@@ -1,5 +1,5 @@
 import React from "react";
-import { FaUserCircle, FaHospital } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 function Hero() {
