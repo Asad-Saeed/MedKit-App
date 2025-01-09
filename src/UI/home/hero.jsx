@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 function Hero() {
   const navigate = useNavigate();
   return (
-    <section className="flex flex-col justify-center items-center">
-      <div className="text-center my-10">
+    <section className="flex flex-col justify-center items-center my-10">
+      <div className="text-center my-5">
         <h1 className="text-5xl md:text-7xl font-bold">Welcome to Medkit</h1>
         <p className="text-lg mt-4">
           Medkit is an individual seeking employment or residency in any of The
           Gulf Cooperation Council States.
         </p>
-        <p className="text-2xl mt-2 font-bold">
+        <p className="text-2xl my-4 font-bold">
           We wish you good health and happiness.
         </p>
       </div>
