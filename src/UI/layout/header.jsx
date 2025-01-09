@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import logo from "../../assets/svg/logo.svg";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const activeLinkClass = "text-purple-500 font-semibold block";
+  const defaultLinkClass = "block hover:text-purple-400";
 
   return (
     <header className="bg-gray-800 text-white py-4 px-6">
@@ -17,50 +20,88 @@ function Header() {
 
         {/* Hamburger Menu */}
         <button
-          className="text-2xl md:hidden"
+          className="text-2xl "
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <FiX /> : <FiMenu />}
         </button>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex space-x-6">
-          <Link to="/" className="hover:text-purple-400">
+        <nav className="hidden ">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : defaultLinkClass
+            }
+          >
             Home
-          </Link>
-          <Link to="/about" className="hover:text-purple-400">
+          </NavLink>
+          <NavLink
+            to="/appointment"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : defaultLinkClass
+            }
+          >
+            Appointment
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : defaultLinkClass
+            }
+          >
             About
-          </Link>
-          <Link to="/contact" className="hover:text-purple-400">
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : defaultLinkClass
+            }
+          >
             Contact Us
-          </Link>
+          </NavLink>
         </nav>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <nav className="mt-4 space-y-4 md:hidden">
-          <Link
+        <nav className="mt-4 space-y-4 ">
+          <NavLink
             to="/"
-            className="block hover:text-purple-400"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : defaultLinkClass
+            }
             onClick={() => setIsMenuOpen(false)}
           >
             Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
+            to="/appointment"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : defaultLinkClass
+            }
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Appointment
+          </NavLink>
+          <NavLink
             to="/about"
-            className="block hover:text-purple-400"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : defaultLinkClass
+            }
             onClick={() => setIsMenuOpen(false)}
           >
             About
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/contact"
-            className="block hover:text-purple-400"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : defaultLinkClass
+            }
             onClick={() => setIsMenuOpen(false)}
           >
             Contact Us
-          </Link>
+          </NavLink>
         </nav>
       )}
     </header>

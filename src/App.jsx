@@ -6,12 +6,13 @@ import ContactUs from "./UI/pages/contact";
 import Header from "./UI/layout/header";
 import Footer from "./UI/layout/footer";
 import bgImage from "../src/assets/svg/Group.svg";
+import Appointment from "./UI/pages/appointment";
 
 function App() {
   return (
     <Router>
       <div
-        className="h-auto flex flex-col text-white bg-gray-900"
+        className="h-auto flex flex-col text-white bg-gray-900 min-h-screen"
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
@@ -26,6 +27,7 @@ function App() {
         <main className="flex-1 p-5 ">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/appointment" element={<Appointment />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactUs />} />
           </Routes>
