@@ -1,25 +1,9 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import InvoicePDF from "../appointment/invoice";
-
-const schema = yup.object().shape({
-  country: yup.string().required("Country is required"),
-  city: yup.string().required("City is required"),
-  gccCountry: yup.string().required("GCC Country is required"),
-  firstName: yup.string().required("First Name is required"),
-  lastName: yup.string().required("Last Name is required"),
-  dateOfBirth: yup.date().required("Date of Birth is required"),
-  nationality: yup.string().required("Nationality is required"),
-  gender: yup.string().required("Gender is required"),
-  maritalStatus: yup.string().required("Marital Status is required"),
-  passportNumber: yup.string().required("Passport Number is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  phone: yup.string().required("Phone number is required"),
-});
-
+import { appointmentSchema } from "../../utils/schema";
 const AppointmentForm = () => {
   const {
     handleSubmit,
@@ -27,16 +11,19 @@ const AppointmentForm = () => {
     watch,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(appointmentSchema),
   });
-  const onSubmit = (data: any) => {
+
+  const onSubmit = (data) => {
+    // alert("Form submitted successfully!");
+    window.confirm("Are you sure you want to submit the form?");
     console.log("Form Data:", data);
   };
 
   const formData = watch();
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-lg text-black">
+    <div className="max-w-5xl mx-auto my-5 md:my-10 p-6 bg-white shadow-md rounded-lg text-black">
       <h1 className="text-3xl font-normal mb-4">
         Book a Medical Examination Appointment
       </h1>
@@ -185,6 +172,74 @@ const AppointmentForm = () => {
               />
               <p className="text-red-500 text-sm">{errors.phone?.message}</p>
             </div>
+            <div>
+              <label className="block mb-1">Nationality</label>
+              <Controller
+                name="nationality"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    {...field}
+                    className="w-full border rounded p-2"
+                    placeholder="Enter your nationality"
+                  />
+                )}
+              />
+              <p className="text-red-500 text-sm">
+                {errors.nationality?.message}
+              </p>
+            </div>
+            <div>
+              <label className="block mb-1">Gender</label>
+              <Controller
+                name="gender"
+                control={control}
+                render={({ field }) => (
+                  <select {...field} className="w-full border rounded p-2">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                )}
+              />
+              <p className="text-red-500 text-sm">{errors.gender?.message}</p>
+            </div>
+            <div>
+              <label className="block mb-1">Marital Status</label>
+              <Controller
+                name="maritalStatus"
+                control={control}
+                render={({ field }) => (
+                  <select {...field} className="w-full border rounded p-2">
+                    <option value="">Select Marital Status</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                  </select>
+                )}
+              />
+              <p className="text-red-500 text-sm">
+                {errors.maritalStatus?.message}
+              </p>
+            </div>
+            <div>
+              <label className="block mb-1">Passport Number</label>
+              <Controller
+                name="passportNumber"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    {...field}
+                    className="w-full border rounded p-2"
+                    placeholder="Enter your passport number"
+                  />
+                )}
+              />
+              <p className="text-red-500 text-sm">
+                {errors.passportNumber?.message}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -201,9 +256,7 @@ const AppointmentForm = () => {
             fileName="appointment_invoice.pdf"
             className="md:px-4 md:py-2 p-2 bg-green-500 text-white rounded-md hover:bg-purple-600"
           >
-            {({ loading }) =>
-              loading ? "Generating PDF..." : "Download Invoice"
-            }
+            {({ loading }) => (loading ? "Generating PDF..." : "Download PDF")}
           </PDFDownloadLink>
         </div>
       </form>
