@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import logo from "../../assets/svg/logo.svg";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const navigate = useNavigate();
   const activeLinkClass = "text-purple-500 font-semibold block";
   const defaultLinkClass = "block hover:text-purple-400";
 
@@ -13,7 +13,10 @@ function Header() {
     <header className="bg-gray-800 text-white py-4 px-6">
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center">
+        <div
+          className="flex items-center cursor-pointer"
+          onClick={() => navigate("/")}
+        >
           <img src={logo} alt="Medkit Logo" className="h-8 mr-3" />
           <span className="text-lg font-semibold">Medkit</span>
         </div>

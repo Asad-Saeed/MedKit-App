@@ -32,11 +32,11 @@ function Hero() {
           <div className="flex gap-4">
             <button
               onClick={() => navigate("/appointment")}
-              className="bg-black text-white px-4 py-2 rounded-md hover:bg-purple-600"
+              className="bg-black text-white md:px-4 md:py-2 p-2 rounded-md hover:bg-purple-600"
             >
               Book an Appointment
             </button>
-            <button className="bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-purple-400">
+            <button className="bg-gray-200 text-black md:px-4 md:py-2 p-2 rounded-md hover:bg-purple-400">
               View Medical Reports
             </button>
           </div>
@@ -55,11 +55,11 @@ function Hero() {
           <div className="flex gap-4">
             <button
               onClick={() => navigate("/appointment")}
-              className="bg-black text-white px-4 py-2 rounded-md hover:bg-purple-600"
+              className="bg-black text-white md:px-4 md:py-2 p-2 rounded-md hover:bg-purple-600"
             >
               Book an Appointment
             </button>
-            <button className="bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-purple-400">
+            <button className="bg-gray-200 text-black md:px-4 md:py-2 p-2 rounded-md hover:bg-purple-400">
               View Medical Reports
             </button>
           </div>

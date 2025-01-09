@@ -33,18 +33,18 @@ const AppointmentForm = () => {
     console.log("Form Data:", data);
   };
 
-  const formData = watch(); // Watches form data to pass to the PDF
+  const formData = watch();
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg text-black">
-      <h1 className="text-2xl font-bold mb-4">
+    <div className="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-lg text-black">
+      <h1 className="text-3xl font-normal mb-4">
         Book a Medical Examination Appointment
       </h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Location Section */}
         <div>
-          <h2 className="font-semibold">Location</h2>
-          <div className="grid grid-cols-3 gap-4">
+          <h2 className="font-normal text-2xl my-10">Location</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block mb-1">Country</label>
               <Controller
@@ -98,8 +98,10 @@ const AppointmentForm = () => {
 
         {/* Candidate's Information */}
         <div>
-          <h2 className="font-semibold">Candidate's Information</h2>
-          <div className="grid grid-cols-2 gap-4">
+          <h2 className="font-normal text-2xl my-10">
+            Candidate's Information
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block mb-1">First Name</label>
               <Controller
@@ -187,17 +189,17 @@ const AppointmentForm = () => {
         </div>
 
         {/* Submit */}
-        <div className="flex items-center justify-between mt-6">
+        <div className="flex items-center justify-between pt-4 md:pt-6 gap-4">
           <button
             type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded"
+            className="bg-black text-white md:px-4 md:py-2 p-2 rounded-md hover:bg-purple-600"
           >
             Save and Continue
           </button>
           <PDFDownloadLink
             document={<InvoicePDF data={formData} />}
             fileName="appointment_invoice.pdf"
-            className="px-4 py-2 bg-green-500 text-white rounded"
+            className="md:px-4 md:py-2 p-2 bg-green-500 text-white rounded-md hover:bg-purple-600"
           >
             {({ loading }) =>
               loading ? "Generating PDF..." : "Download Invoice"
